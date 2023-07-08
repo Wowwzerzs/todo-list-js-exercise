@@ -1,11 +1,52 @@
+// Refactor 3: Using Methods - task object methods
+
+const newTask = function(title, description) {
+  const task = {
+    title: title,
+    description: description,
+    complete: false,
+
+    logState: function() {
+      console.log(`${this.title} has${this.complete ? " " : " not "}been completed`);
+    },
+
+    markCompleted: function() {
+      this.complete = true;
+    }
+  };
+  return task;
+};
+
+// DRIVER CODE CHANGES BELOW
+
+const task1 = newTask("Clean Cat Litter", "Take all the 💩 out of the litter box");
+const task2 = newTask("Do Laundry", "😨");
+const tasks = [task1, task2];
+
+task1.logState(); // Clean Cat Litter has not been completed
+task1.markCompleted();
+task1.logState(); // Clean Cat Litter has been completed
+
+task2.logState(); // Do Laundry has not been completed
+task2.markCompleted();
+task2.logState(); // Do Laundry has been completed
+
+console.log(tasks);
+
+
+
+/*
+
 // Arrays to keep track of each task's state
 const taskTitles = [];
 const taskComplete = [];
+cont taskDescriptions = [];
 
 // Create a new task by adding to the arrays
 // A new task will be created as incomplete
-function newTask(title) {
+function newTask(title, description) {
   taskTitles.push(title);
+  taskDescriptions.push(description);
   taskComplete.push(false);
 }
 
@@ -29,3 +70,69 @@ newTask("Do Laundry"); // task 1
 logTaskState(0); // Clean Cat Litter has not been completed
 completeTask(0);
 logTaskState(0); // Clean Cat Litter has been completed
+
+*/
+
+// Refactor 1
+
+/*
+
+function newTask(title, description) {
+  const task = {
+    title: title,
+    description: description,
+    complete: false
+  };
+  return task;
+}
+
+// DRIVER CODE BELOW
+
+const task1 = newTask("Clean Cat Litter", "Take all the 💩 out of the litter box");
+const task2 = newTask("Do Laundry", "😨");
+const tasks = [task1, task2];
+
+// for now, let's just make sure we see our tasks
+console.log(tasks);
+
+*/
+
+/*
+
+// Refactor 2: Refactor functions
+
+function newTask(title, description) {
+  const task = {
+    title: title,
+    description: description,
+    complete: false
+  };
+  return task;
+}
+
+// prints out the provided task's details
+function logTaskState(task) {
+  console.log(`${task.title} has${task.complete ? " " : " not "}been completed`);
+}
+
+// marks the provided task as completed
+function completeTask(task) {
+  task.complete = true;
+}
+
+// DRIVER CODE BELOW
+
+const task1 = newTask("Clean Cat Litter", "Take all the 💩 out of the litter box");
+const task2 = newTask("Do Laundry", "😨");
+const tasks = [task1, task2];
+
+logTaskState(task1); // Clean Cat Litter has not been completed
+completeTask(task1);
+logTaskState(task1); // Clean Cat Litter has been completed
+logTaskState(task2);
+completeTask(task2);
+logTaskState(task2);
+
+console.log(tasks);
+
+*/
